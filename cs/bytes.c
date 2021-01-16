@@ -1,12 +1,12 @@
 #include <stdio.h>
 
-typedef unsigned char *byte_pointer;
+typedef unsigned char* byte_pointer;
 
 void show_bytes(byte_pointer start, size_t len) {
 	int i;
 	for (i = 0; i < len; i++)
 		printf(" %.2x", start[i]);
-	printf("\n");
+		printf("\n");
 }
 
 void show_int(int x) {
@@ -21,3 +21,17 @@ void show_pointer(void *x) {
 	show_bytes((byte_pointer) &x, sizeof(void *));
 }
 
+void test_show_bytes(int val) {
+	float fval = (float) val;
+	int *pval = &val;
+	show_int(val);
+	show_float(fval);
+	show_pointer(pval);
+}
+
+int main()
+{
+	test_show_bytes(12345);
+	show_bytes("1", 24);
+	return 0;
+}
